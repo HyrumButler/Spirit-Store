@@ -181,61 +181,14 @@
         </table>
     </div>
   
-    <form id="emailForm" action="mailto:113466@pilgrims.npschools.us" method="GET" target="_blank">
-      <h1 class="title">Start Email to 113466@pilgrims.npschools.us</h1>
-      <div class="field">
-          <label class="label" for="subject">Email Subject</label>
-          <input name="subject" id="subject" type="text" class="input" value="">
-      </div>
-      <div class="field">
-          <label class="label" for="body">Email Body</label>
-          <textarea class="textarea" name="body" id="body"></textarea>
-      </div>
-      <div><input type="button" value="Create Email" class="button is-primary" onclick="populateCartAndEmail()"></div>
-  </form>
-  
-  <script>
-      function populateCartAndEmail() {
-          // Gather information from the shopping cart
-          var cartItems = document.querySelectorAll('.card-title'); // Assuming each product has a class of 'card-title' for its title
-          var cartTotal = document.querySelector('.grand-total strong').textContent;
-  
-          // Construct the email body content
-          var emailBodyContent = "Shopping Cart Items:\n";
-          cartItems.forEach(function(item) {
-              emailBodyContent += "- " + item.textContent + "\n"; // Add each item to the email body
-          });
-          emailBodyContent += "\nTotal: " + cartTotal;
-  
-          // Set the constructed email body content to the textarea
-          document.getElementById('body').value = emailBodyContent;
-  
-          // Populate the table with cart items
-          var tableBody = document.querySelector('tbody');
-          cartItems.forEach(function(item) {
-              var row = document.createElement('tr');
-              var itemCell = document.createElement('td');
-              itemCell.textContent = item.textContent;
-              row.appendChild(itemCell);
-              tableBody.appendChild(row);
-          });
-  
-          // Submit the form
-          document.getElementById('emailForm').submit();
-      }
-  </script>
-  
-  
-    <h3>If you add products into the cart it will give you the total cost of what you are purchasing. I need this info in the email, your name, address, state, and email. What products you want, and what color you want of three, white, navy, gray. The way you would prefer to pay, if you would rather pay in person you can do that, you may also send the money in venmo.</h3>
-    <div class = 'col-md-4 col-lg-4'>
-      <div class="card" style="width: 18rem;">
-          <img src="img/adobe-express-qr-code.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h3 class="card-title">Venmo Pay</h3>
-            <a href="https://venmo.com" target="_blank">Venmo Pay Link</a>
-          </div>
-        </div>
-    </div>
-  </div>
+      <script src = 'script.js'></script>
+<form action="mailto:113466@pilgrims.npschools.us" method="GET" target="_blank">
+  <h1 class="title">Start Email to 113466@pilgrims.npschools.us</h1>
+  <div class="field"><label class="label" for="subject">Email Subject</label>
+      <input name="subject" id="subject" type="text" class="input" value="Example Email Subject"></div>
+  <div class="field"><label class="label" for="body">Email Body</label>
+      <textarea class="textarea" name="body" id="body">Example Email Body</textarea></div>
+  <div><input type="submit" value="Create Email" class="button is-primary"></div>
+</form>
 </body>
 </html>
