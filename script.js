@@ -34,7 +34,18 @@ function addToCart(event){
 `
 
     cartContainer.append(itemContainer)
+    var cartItems = document.querySelectorAll('.card-title'); // Assuming each product has a class of 'card-title' for its title
+    var cartTotal = document.querySelector('.grand-total strong').textContent;
 
+    // Construct the email body content
+    var emailBodyContent = "Shopping Cart Items:\n";
+    cartItems.forEach(function(item) {
+        emailBodyContent += "- " + item.textContent + "\n"; // Add each item to the email body
+    });
+    emailBodyContent += "\nTotal: " + cartTotal;
+
+    // Set the constructed email body content to the textarea
+    document.getElementById('body').value = emailBodyContent;
 
 
 
