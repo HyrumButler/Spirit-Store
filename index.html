@@ -142,7 +142,77 @@
                     </div>
                   </div>
               </div>
+              <div class = 'col-md-4 col-lg-4'>
+                <div class="card" style="width: 18rem;">
+                    <img src="img/unnamed (1).png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title">Track and Field</h3>
+                      <h4 class="card-text">$25</h4>
+                      <a class="btn btn-primary">Add to Cart</a>
+                    </div>
+                  </div>
+              </div>
 
+              <div class = 'col-md-4 col-lg-4'>
+                <div class="card" style="width: 18rem;">
+                    <img src="img/unnamed (2).png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title">Baseball</h3>
+                      <h4 class="card-text">$25</h4>
+                      <a class="btn btn-primary">Add to Cart</a>
+                    </div>
+                  </div>
+              </div>
+              <div class = 'col-md-4 col-lg-4'>
+                <div class="card" style="width: 18rem;">
+                    <img src="img/unnamed (3).png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title">Track Field 2</h3>
+                      <h4 class="card-text">$25</h4>
+                      <a class="btn btn-primary">Add to Cart</a>
+                    </div>
+                  </div>
+              </div>
+              <div class = 'col-md-4 col-lg-4'>
+                <div class="card" style="width: 18rem;">
+                    <img src="img/unnamed (4).png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title">New Plymouth</h3>
+                      <h4 class="card-text">$25</h4>
+                      <a class="btn btn-primary">Add to Cart</a>
+                    </div>
+                  </div>
+              </div>
+              <div class = 'col-md-4 col-lg-4'>
+                <div class="card" style="width: 18rem;">
+                    <img src="img/unnamed (5).png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title">Track Field 3</h3>
+                      <h4 class="card-text">$25</h4>
+                      <a class="btn btn-primary">Add to Cart</a>
+                    </div>
+                  </div>
+              </div>
+              <div class = 'col-md-4 col-lg-4'>
+                <div class="card" style="width: 18rem;">
+                    <img src="img/unnamed (6).png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title">Softball</h3>
+                      <h4 class="card-text">$25</h4>
+                      <a class="btn btn-primary">Add to Cart</a>
+                    </div>
+                  </div>
+              </div>
+              <div class = 'col-md-4 col-lg-4'>
+                <div class="card" style="width: 18rem;">
+                    <img src="img/unnamed.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title">Baseball</h3>
+                      <h4 class="card-text">$25</h4>
+                      <a class="btn btn-primary">Add to Cart</a>
+                    </div>
+                  </div>
+              </div>
             </div>
       </div>
 
@@ -180,15 +250,17 @@
           </tr>
         </table>
     </div>
-  
-      <script src = 'script.js'></script>
-<form action="mailto:113466@pilgrims.npschools.us" method="GET" target="_blank">
-  <h1 class="title">Start Email to 113466@pilgrims.npschools.us</h1>
+<form id="emailForm" action="mailto:113466@pilgrims.npschools.us" method="GET" target="_blank">
+  <h1 class="title">Start Email to Hyrum Butler:Fill out the body form after you press create email
+  </h1>
   <div class="field"><label class="label" for="subject">Email Subject</label>
-      <input name="subject" id="subject" type="text" class="input" value="Example Email Subject"></div>
+      <input name="subject" id="subject" type="text" class="input" value="Products" readonly></div>
   <div class="field"><label class="label" for="body">Email Body</label>
-      <textarea class="textarea" name="body" id="body">Example Email Body</textarea></div>
-  <div><input type="submit" value="Create Email" class="button is-primary"></div>
+      <textarea class="textarea" name="body" id="body">Full Name: Address: Email: Products you want to purchase:</textarea></div>
+  <input type="hidden" id="cartContent" name="cartContent">
+  <div><input type="submit" value="Create Email" class="button is-primary" onclick=populateCartAndEmail()></div>
 </form>
+
 </body>
+<script src="script.js"></script>
 </html>
