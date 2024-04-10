@@ -236,30 +236,50 @@
                 </tr>
           
 
-            </tbody>
-            <tr>
-              <td><input class="uk-checkbox" type="checkbox"></td>
-              <td><img class="uk-preserve-width uk-border-circle"  width="40" alt=""></td>
-              <td class="uk-table-link">
-                  <h3 class = "item-name"><strong>Grand-Total</strong></h3>
-              </td>
-              <td class="uk-text-truncate"><h3></h3></td>
-              <td class="uk-text-truncate"><h3></h3></td>
-              <td class="uk-text-truncate grand-total"><h3><strong>$0</strong></h3></td>
-              
-          </tr>
-        </table>
-    </div>
-<form id="emailForm" action="mailto:113466@pilgrims.npschools.us" method="GET" target="_blank">
-  <h1 class="title">Start Email to Hyrum Butler:Fill out the body form after you press create email
-  </h1>
-  <div class="field"><label class="label" for="subject">Email Subject</label>
-      <input name="subject" id="subject" type="text" class="input" value="Products" readonly></div>
-  <div class="field"><label class="label" for="body">Email Body</label>
-      <textarea class="textarea" name="body" id="body">Full Name: Address: Email: Products you want to purchase:</textarea></div>
-  <input type="hidden" id="cartContent" name="cartContent">
-  <div><input type="submit" value="Create Email" class="button is-primary" onclick=populateCartAndEmail()></div>
-</form>
+                <a href="#" onclick="sendEmailWithCart(event)" class="btn btn-primary">Send Email with Cart</a>
+
+                <script>
+                  // Define the function
+                  function sendEmailWithCart(event) {
+                      event.preventDefault(); // Prevent default anchor behavior
+            
+                      // Extract cart item information
+                      var items = document.querySelectorAll('.uk-table tbody tr');
+                      var tableData = "Item\tPrice\tQuantity\tTotal\n";
+                      
+                      items.forEach(function(item) {
+                          var itemName = item.querySelector('.item-name');
+                          var itemPrice = item.querySelector('.item-price');
+                          var quantityInput = item.querySelector('.num');
+            
+                          // Check if elements exist before accessing their properties
+                          if (itemName && itemPrice && quantityInput) {
+                              var itemNameText = itemName.textContent;
+                              var itemPriceText = itemPrice.textContent;
+                              var quantity = quantityInput.value;
+                              var totalPrice = parseFloat(itemPriceText.replace('$', '')) * quantity;
+                              
+                              tableData += itemNameText + '\t' + itemPriceText + '\t' + quantity + '\t$' + totalPrice.toFixed(2) + '\n';
+                          }
+                      });
+            
+                      // Email content
+                      var subject = "Shopping Cart Contents";
+                      var body = encodeURIComponent(tableData);
+            
+                      // Construct mailto link
+                      var mailtoLink = "mailto:113466@pilgrims.npschools.us?subject=" + subject + "&body=" + body;
+            
+                      // Open default email client
+                      window.location.href = mailtoLink;
+                  }
+            
+                  // Attach event listener to the button only if it exists
+                  var sendEmailButton = document.getElementById("sendEmailButton");
+                  if (sendEmailButton) {
+                      sendEmailButton.addEventListener("click", sendEmailWithCart);
+                  }
+              </script>
 
 </body>
 <script src="script.js"></script>
