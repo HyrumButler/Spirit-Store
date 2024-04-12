@@ -13,7 +13,6 @@ for (let i = 0; i < addToCartButtons.length; i++) {
     addToCartButtons[i].addEventListener('click', addToCartAndUpdateEmail);
 }
 
-// This function helps to add items to our cart
 function addToCart(event) {
     let itemContainer = document.createElement('tr');
     let btn = event.target;
@@ -22,6 +21,8 @@ function addToCart(event) {
     let itemImage = btnGrandParent.querySelector('.card-img-top').src;
     let itemName = btnParent.querySelector('.card-title').innerText;
     let itemPrice = btnParent.querySelector('.card-text').innerText;
+    let selectedColor = btnParent.querySelector('#colorSelect').value; // Get the selected color from the dropdown
+    let selectedSize = btnParent.querySelector('#sizeSelect').value; // Get the selected size from the dropdown
 
     itemContainer.innerHTML = `
         <td><input class="uk-checkbox" type="checkbox"></td>
@@ -30,6 +31,8 @@ function addToCart(event) {
             <h3 class="item-name">${itemName}</h3>
         </td>
         <td class="uk-text-truncate item-price"><h3>${itemPrice}</h3></td>
+        <td class="uk-text-truncate item-color" style="background-color: ${selectedColor};">${selectedColor}</td> <!-- Display selected color -->
+        <td class="uk-text-truncate item-size">${selectedSize}</td> <!-- Display selected size -->
         <td><input type="number" class="num" value="1"></td>
         <td class="uk-text-truncate total-price"><h3>${itemPrice}</h3></td>
         <td><button class="uk-button uk-button-danger" type="button">Remove</button></td>
@@ -43,13 +46,20 @@ function addToCart(event) {
         quantityFields[i].addEventListener('change', totalCost);
     }
 
-    // Accessing individual quantity fields
+    // Accessing individual delete buttons
     for (let i = 0; i < delete_buttons.length; i++) {
         delete_buttons[i].addEventListener('click', removeItem);
     }
 
     grandTotal();
 }
+
+
+
+
+
+
+
 
 // This function helps to multiply the quantity and the price
 function totalCost(event) {
