@@ -23,6 +23,14 @@ function addToCart(event) {
     let itemPrice = btnParent.querySelector('.card-text').innerText;
     let selectedColor = btnParent.querySelector('#colorSelect').value; // Get the selected color from the dropdown
     let selectedSize = btnParent.querySelector('#sizeSelect').value; // Get the selected size from the dropdown
+    let customNameCheckbox = btnParent.querySelector('#customNameCheckbox');
+    let wantsCustomName = customNameCheckbox.checked; // Check if the custom name checkbox is checked
+
+    // Add a custom name field if the checkbox is checked
+    let customNameField = '';
+    if (wantsCustomName) {
+        customNameField = `<input type="text" id="customNameInput" placeholder="Enter Custom Name">`;
+    }
 
     itemContainer.innerHTML = `
         <td><input class="uk-checkbox" type="checkbox"></td>
@@ -33,6 +41,7 @@ function addToCart(event) {
         <td class="uk-text-truncate item-price"><h3>${itemPrice}</h3></td>
         <td class="uk-text-truncate item-color" style="background-color: ${selectedColor};">${selectedColor}</td> <!-- Display selected color -->
         <td class="uk-text-truncate item-size">${selectedSize}</td> <!-- Display selected size -->
+        <td>${customNameField}</td> <!-- Display custom name field if checkbox is checked -->
         <td><input type="number" class="num" value="1"></td>
         <td class="uk-text-truncate total-price"><h3>${itemPrice}</h3></td>
         <td><button class="uk-button uk-button-danger" type="button">Remove</button></td>
@@ -53,6 +62,7 @@ function addToCart(event) {
 
     grandTotal();
 }
+
 
 
 

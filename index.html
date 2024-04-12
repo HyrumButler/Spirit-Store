@@ -43,6 +43,8 @@
                               <option value="large">Large</option>
                           </select>
                       </div>
+                      <input type="checkbox" id="customNameCheckbox">
+<label for="customNameCheckbox">Add Custom Name</label>
                         <a class="btn btn-primary addToCart">Add to Cart</a>
                     </div>
                 </div>
@@ -587,6 +589,7 @@
                     <th class="uk-width-small sty"><h3>PRICE</h3></th>
                     <th class="uk-table-shrink uk-text-small sty"><h3>COLOR</h3></th>
                     <th class="uk-table-shrink uk-text-small sty"><h3>SIZE</h3></th>
+                    <th class="uk-table-shrink uk-text-small sty"><h3>CUSTOM</h3></th>
                     <th class="uk-table-shrink uk-text-small sty"><h3>QUANTITY</h3></th>
                     <th class="uk-table-shrink uk-text-small sty"><h3>TOTAL</h3></th>
 
@@ -600,30 +603,33 @@
                 
                 <script>
                 // Define the function to send email with cart contents
+// Define the function to send email with cart contents
 function sendEmailWithCart(event) {
     event.preventDefault(); // Prevent default anchor behavior
 
     // Extract cart item information
     var items = document.querySelectorAll('.uk-table tbody tr');
-    var tableData = "Item\tPrice\tSize\tColor\tQuantity\tTotal\n";
+    var tableData = "Item\tPrice\tColor\tSize\tCustom Name\tQuantity\tTotal\n";
     
     items.forEach(function(item) {
         var itemName = item.querySelector('.item-name');
         var itemPrice = item.querySelector('.item-price');
+        var itemColor = item.querySelector('.item-color');
         var itemSize = item.querySelector('.item-size');
-        var itemColor = item.querySelector('.item-color'); // Include color information
+        var customNameInput = item.querySelector('#customNameInput'); // Include custom name input field
         var quantityInput = item.querySelector('.num');
 
         // Check if elements exist before accessing their properties
-        if (itemName && itemPrice && itemColor && quantityInput) {
+        if (itemName && itemPrice && itemColor && itemSize && quantityInput) {
             var itemNameText = itemName.textContent;
             var itemPriceText = itemPrice.textContent;
+            var itemColorText = itemColor.textContent;
             var itemSizeText = itemSize.textContent;
-            var itemColorText = itemColor.textContent; // Get color text
+            var customName = customNameInput ? customNameInput.value : ''; // Get custom name value if input exists
             var quantity = quantityInput.value;
             var totalPrice = parseFloat(itemPriceText.replace('$', '')) * quantity;
             
-            tableData += itemNameText + '\t' + itemPriceText + '\t' + itemSizeText + '\t' + itemColorText + '\t' + quantity + '\t$' + totalPrice.toFixed(2) + '\n';
+            tableData += itemNameText + '\t' + itemPriceText + '\t' + itemColorText + '\t' + itemSizeText + '\t' + customName + '\t' + quantity + '\t$' + totalPrice.toFixed(2) + '\n';
         }
     });
 
@@ -643,6 +649,7 @@ var sendEmailButton = document.getElementById("sendEmailButton");
 if (sendEmailButton) {
     sendEmailButton.addEventListener("click", sendEmailWithCart);
 }
+
                 </script>
                 
 </body>
