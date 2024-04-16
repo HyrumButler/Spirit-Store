@@ -21,12 +21,25 @@ function addToCart(event) {
     let itemImage = btnGrandParent.querySelector('.card-img-top').src;
     let itemName = btnParent.querySelector('.card-title').innerText;
     let itemPrice = btnParent.querySelector('.card-text').innerText;
-    let selectedColor = btnParent.querySelector('#colorSelect').value; // Get the selected color from the dropdown
-    let selectedSize = btnParent.querySelector('#sizeSelect').value; // Get the selected size from the dropdown
+    let selectedColor = btnParent.querySelector('#colorSelect').value;
+    let selectedSize = btnParent.querySelector('#sizeSelect').value;
+    let garmentType = btnParent.querySelector('#garmentTypeSelect').value;
     let customNameCheckbox = btnParent.querySelector('#customNameCheckbox');
-    let wantsCustomName = customNameCheckbox.checked; // Check if the custom name checkbox is checked
+    let wantsCustomName = customNameCheckbox.checked;
 
-    // Add a custom name field if the checkbox is checked
+    // Adjust item price based on garment type
+    if (garmentType === 'sweatshirt') {
+        itemPrice = '$25'; // Update price for sweatshirt
+    } else {
+        itemPrice = '$20'; // Default price for T-Shirt
+    }
+
+    // Add $5 if custom name checkbox is checked
+    if (wantsCustomName) {
+        itemPrice = (parseFloat(itemPrice.replace('$', '')) + 5).toFixed(2);
+        itemPrice = '$' + itemPrice;
+    }
+
     let customNameField = '';
     if (wantsCustomName) {
         customNameField = `<input type="text" id="customNameInput" placeholder="Enter Custom Name">`;
@@ -39,9 +52,9 @@ function addToCart(event) {
             <h3 class="item-name">${itemName}</h3>
         </td>
         <td class="uk-text-truncate item-price"><h3>${itemPrice}</h3></td>
-        <td class="uk-text-truncate item-color" style="background-color: ${selectedColor};">${selectedColor}</td> <!-- Display selected color -->
-        <td class="uk-text-truncate item-size">${selectedSize}</td> <!-- Display selected size -->
-        <td>${customNameField}</td> <!-- Display custom name field if checkbox is checked -->
+        <td class="uk-text-truncate item-color" style="background-color: ${selectedColor};">${selectedColor}</td>
+        <td class="uk-text-truncate item-size">${selectedSize}</td>
+        <td>${customNameField}</td>
         <td><input type="number" class="num" value="1"></td>
         <td class="uk-text-truncate total-price"><h3>${itemPrice}</h3></td>
         <td><button class="uk-button uk-button-danger" type="button">Remove</button></td>
@@ -62,6 +75,7 @@ function addToCart(event) {
 
     grandTotal();
 }
+
 
 
 
