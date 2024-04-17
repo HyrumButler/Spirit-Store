@@ -27,18 +27,20 @@ function addToCart(event) {
     let customNameCheckbox = btnParent.querySelector('#customNameCheckbox');
     let wantsCustomName = customNameCheckbox.checked;
 
-    // Adjust item price based on garment type
-    if (garmentType === 'sweatshirt') {
-        itemPrice = '$25'; // Update price for sweatshirt
-    } else {
-        itemPrice = '$20'; // Default price for T-Shirt
+    // Set base price based on garment type
+    if (garmentType === 'T-Shirt') {
+        itemPrice = 12; // Base price for T-Shirts
+    } else if (garmentType === 'Sweatshirt') {
+        itemPrice = 25; // Base price for Sweatshirts
     }
 
-    // Add $5 if custom name checkbox is checked
+    // Increase price if custom name checkbox is checked
     if (wantsCustomName) {
-        itemPrice = (parseFloat(itemPrice.replace('$', '')) + 5).toFixed(2);
-        itemPrice = '$' + itemPrice;
+        itemPrice += 5; // Add $5 for custom name
     }
+
+    // Convert itemPrice to string with $ symbol
+    itemPrice = '$' + itemPrice.toFixed(2);
 
     let customNameField = '';
     if (wantsCustomName) {
@@ -46,21 +48,22 @@ function addToCart(event) {
     }
 
     itemContainer.innerHTML = `
-        <td><input class="uk-checkbox" type="checkbox"></td>
-        <td><img class="uk-preserve-width uk-border-circle" src=${itemImage} width="40" alt=""></td>
-        <td class="uk-table-link">
-            <h3 class="item-name">${itemName}</h3>
-        </td>
-        <td class="uk-text-truncate item-price"><h3>${itemPrice}</h3></td>
-        <td class="uk-text-truncate item-color" style="background-color: ${selectedColor};">${selectedColor}</td>
-        <td class="uk-text-truncate item-size">${selectedSize}</td>
-        <td>${customNameField}</td>
-        <td><input type="number" class="num" value="1"></td>
-        <td class="uk-text-truncate total-price"><h3>${itemPrice}</h3></td>
-        <td><button class="uk-button uk-button-danger" type="button">Remove</button></td>
-    `;
+    <td><input class="uk-checkbox" type="checkbox"></td>
+    <td><img class="uk-preserve-width uk-border-circle" src="${itemImage}" width="40" alt=""></td>
+    <td class="uk-table-link">
+        <h3 class="item-name">${itemName}</h3>
+    </td>
+    <td class="uk-text-truncate item-price"><h3>${itemPrice}</h3></td>
+    <td class="uk-text-truncate item-color" style="background-color: ${selectedColor};">${selectedColor}</td>
+    <td class="uk-text-truncate item-size">${selectedSize}</td>
+    <td class="uk-text-truncate item-garment">${garmentType}</td> <!-- Added garment type -->
+    <td>${customNameField}</td>
+    <td><input type="number" class="num" value="1"></td>
+    <td class="uk-text-truncate total-price"><h3>${itemPrice}</h3></td>
+    <td><button class="uk-button uk-button-danger" type="button">Remove</button></td>
+`;
 
-    cartContainer.append(itemContainer);
+    cartContainer.appendChild(itemContainer);
 
     // Accessing individual quantity fields
     for (let i = 0; i < quantityFields.length; i++) {
@@ -75,12 +78,6 @@ function addToCart(event) {
 
     grandTotal();
 }
-
-
-
-
-
-
 
 
 

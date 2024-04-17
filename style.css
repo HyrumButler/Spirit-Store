@@ -28,3 +28,7 @@
     cursor: pointer;
     padding-left: 20px;
 }
+body {
+    background-color: #ffffff; /* Change this color to your desired background color */
+}
+
