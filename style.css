@@ -8,7 +8,7 @@
 }
 .sty{
     font-size: 18px !important;
-    color: black !important;
+    color: rgb(0, 0, 0) !important;
 }
 .num{
     width: 80px;
@@ -31,4 +31,3 @@
 body {
     background-color: #ffffff; /* Change this color to your desired background color */
 }
-
